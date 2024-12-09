@@ -40,11 +40,12 @@ impl eframe::App for MathQuizApp {
         if let Some(start) = self.start_time {
             let elapsed = start.elapsed();
             if elapsed >= self.remaining_time {
+                self.remaining_time = Duration::new(0, 0); // Timer hits 0
                 self.game_over = true;
                 self.start_time = None; // Stop the timer
             } else {
                 self.remaining_time -= elapsed;
-                self.start_time = Some(Instant::now());
+                self.start_time = Some(Instant::now()); // Reset the start time
             }
         }
 
@@ -136,10 +137,11 @@ impl MathQuizApp {
                 self.feedback = "Correct!".to_string();
             } else {
                 self.wrong_answers += 1;
+                // Subtract 2 seconds for wrong answer on top of the normal countdown
                 self.remaining_time = self
                     .remaining_time
                     .checked_sub(Duration::new(2, 0))
-                    .unwrap_or(Duration::new(0, 0)); // Subtract 2 seconds for wrong answer
+                    .unwrap_or(Duration::new(0, 0));
                 self.feedback = format!("Wrong! The correct answer was {}.", self.answer);
             }
 
@@ -150,10 +152,11 @@ impl MathQuizApp {
             self.is_pemdas = is_pemdas;
         } else {
             self.wrong_answers += 1;
+            // Subtract 2 seconds for invalid input
             self.remaining_time = self
                 .remaining_time
                 .checked_sub(Duration::new(2, 0))
-                .unwrap_or(Duration::new(0, 0)); // Subtract 2 seconds for invalid input
+                .unwrap_or(Duration::new(0, 0));
             self.feedback = "Invalid input. Try again!".to_string();
         }
 
