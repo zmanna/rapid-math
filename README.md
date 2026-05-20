@@ -1,6 +1,6 @@
 # Rapid Math
 
-A Rust command-line math practice tool focused on fast arithmetic drills.
+A Rust desktop math practice tool focused on fast arithmetic drills.
 
 ## Overview
 
@@ -18,8 +18,13 @@ This repository is a compact Rust project. It is useful for understanding how a 
 |---|---|
 | `Cargo.toml` | Rust package metadata and dependency configuration. |
 | `Cargo.lock` | Resolved dependency versions for reproducible builds. |
-| `src/main.rs` | Application entry point and core command-line behavior. |
-| `.DS_Store` | macOS metadata currently present in the repository; future cleanup should remove it from version control. |
+| `src/main.rs` | Application entry point, UI state, scoring, timer logic, and problem generation. |
+
+## Documentation
+
+- `docs/ARCHITECTURE.md`: runtime state, UI flow, and extension points.
+- `docs/GAMEPLAY.md`: scoring, timer, difficulty, and problem-generation rules.
+- `CONTRIBUTING.md`: setup and improvement guidance.
 
 ## How to Run or Review
 
